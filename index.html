@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Warung R2</title>
+    <style>
+        *,html{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;     
+            scroll-behavior: smooth;
+            font-family: 'poppins',sans-serif;
+            
+        }
+        :root{
+            --bg: #f5f5f5;
+            --color : #000;
+        }
+        .dark{
+            --bg: navy;
+            --color: #f5f5dc;
+
+        }
+        body{
+            background-color: var(--bg);
+            color: var(--color);
+            transition: all .3s linear;
+            overflow-x: hidden;
+        }
+        
+        a{
+            text-decoration: none;
+        }
+        .nav{
+            width: 100%;
+            position: fixed;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: .1rem 5%;
+            background-color: rgba(100,100,100,.5);
+            backdrop-filter: blur(10px);
+            box-shadow: 1px 1px 5px black;
+            z-index: 999;
+            right: 0;
+            left: 0;
+            top: 0;
+            border-bottom-left-radius: 6px;
+            border-bottom-right-radius: 6px;
+        }
+        .nav .nav-logo{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav .nav-logo img{
+            width: 40px;
+            border-radius: 50%;
+            filter: drop-shadow(1px 1px 4px white);
+        }
+        .nav .nav-logo h2{
+            font-size: 2rem;
+            font-weight: 700;
+            color: inherit;
+            font-style: italic;
+        }
+        .nav .nav-logo span{
+            color: gold;
+            font-size: 2rem;
+        }
+        .nav .nav-navbar a{
+            display: inline-block;
+            margin: .5rem;
+            color: inherit;
+            font-weight: 600;
+            width: 4.3rem;
+            height: 1.5rem;
+            text-align: center;
+            color: #E5E0D8;
+        }
+        .nav .nav-navbar a:hover{
+            border-bottom: solid 2px #E5E0D8;
+        }
+        .nav .nav-extra{
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .nav .nav-extra a{
+            color: inherit;
+        }
+        .nav .nav-extra #list{
+            display: none;
+        }
+
+        .home, .about,.contact{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+        .home{
+            position: relative;
+        }
+        .home:after{
+            position: absolute;
+            content: "";
+            bottom: 0;
+            width: 100%;
+            height: 100px;
+            background-image: linear-gradient(0deg, #daa520 10%, #fed03a 20%, transparent);
+        }
+        .home .row{
+            padding: 5rem 3% 1.4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            overflow: hidden;
+        }
+        .home .row .left{
+            text-align: left;
+            width: 50%;
+            animation: slide1 1s backwards;
+        }
+        @keyframes slide1{
+            0%{
+                transform: translateX(-100%);
+            } 100%{
+                transform: translateX(0px);
+            }
+        }
+        .home .row .left .p1{
+            background-color: gold;
+            width: 14rem;
+            border-radius: 12px;
+            font-size: .8rem;
+            font-weight: 700;
+            padding: 5px 10px;
+            position: relative;
+            margin-bottom: .2rem;
+            color: #000;
+        }
+        .home .row .left h1{
+            font-family: 'poppins',sans-serif;
+            color: var(--color);
+            font-weight: 700;
+            text-shadow: 1px 1px 8px #666;
+            font-size: 4.5rem;
+            line-height: 4.3rem;
+        }
+        .home .row .left h1 span{
+            color: red;
+            font-size: 4.5rem;
+        }
+        .home .row .left p{
+            font-weight: 200;
+            font-family: 'poppins',sans-serif;
+        }
+        .home .row .left .guest{
+            display: flex;
+            align-items: center;
+            font-size: 15px;
+            margin-top: .8rem;
+        }
+        .home .row .left .guest img{
+            width: 20px;
+            border-radius: 50%;
+        }
+        .home .row .right{
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            animation: slide2 1s forwards;
+        }
+        @keyframes slide2{
+            0%{
+                transform: translateX(100%);
+            } 100%{
+                transform: translateX(0px);
+            }
+        }
+        .home .row .right img{
+            width: 130px;
+            border-radius: 50%;
+            flex: 1 1 40px;
+            filter: drop-shadow(0 0 25px #555);
+        }
+        .home .row .right .hp{
+            position: absolute;
+            background-color: rgba(255,255,255,.5);
+            backdrop-filter: blur(10px);
+            display: flex;
+            width: 14rem;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            padding: 0 2%;
+            border-radius: 20px;
+            left: 0;
+            border: solid 1px black;
+            color: black;
+        }
+        .home .row .right .hp .i{
+            padding: 2px 7px;
+            border: solid 1px black;
+            border-radius: 50%;
+        }
+
+        .note{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            width: 100%;
+            background-color: goldenrod;
+        }
+        .note .row{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1%;
+            width: 100%;
+        }
+        .note .row .about1{
+            display: flex;
+            align-items: center;
+            background-color: white;
+            width: 55rem;
+            padding: 0 3rem;
+            font-family: 'poppins',sans-serif;
+            border-radius: 10px;
+            transition: all .2s linear;
+            box-shadow: 1px 1px 8px black;
+        }
+        .note .row .about1:hover{
+            transform: scale(1.1);
+        }
+        .note .row .about1 .text h2{
+            font-size: 2.6rem;
+            font-weight: 800;
+            color: #000;
+        }
+        .note .row .about1 .text p{
+            font-weight: 200;
+            font-size: 1rem;
+            color: #000;
+        }
+        .note .row .about1 img{
+            flex: 1 1 20rem;
+            width: 30rem;
+            filter: drop-shadow(1px 1px 8px black);
+        }
+
+        .about .row{
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            padding: 8rem 7%;
+        }
+        .about .row .gambar{
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .about .row .gambar .a{
+            flex: 1 1 30rem;
+            width: 50rem;
+            filter: drop-shadow(1px 1px 20px #666);
+        }
+        .about .row .gambar .nama{
+            display: flex;
+            height: 30px;
+            width: 120px;
+            background-color: rgba(255,255,255,.5);
+            backdrop-filter: blur(10px);
+            box-shadow: 1px 1px 10px #666;
+            outline: #000;
+            border-radius: 30px;
+            align-items: center;
+            justify-content: space-between;
+            position: absolute;
+            right: 30px;
+            top: 90px;
+        }
+        .about .row .gambar .nama h6{
+            font-weight: 600;
+            font-size: 8px;
+            font-family: 'poppins',sans-serif;
+        }
+        .about .row .gambar .nama .ya{
+            width: 29px;
+            height: 29px;
+        }
+        .about .row .invol{
+            position: absolute;
+            background-color: rgba(255,255,255,.5);
+            backdrop-filter: blur(10px);
+            width: 15rem;
+            height: 9rem;
+            border-radius: 20px;
+            text-align: center;
+            padding: 2rem 0;
+            box-shadow: 1px 1px 10px #666;
+            bottom: 50px;
+            left: 30px;
+        }
+        .about .row .invol h4{
+            font-size: 13px;
+            font-family: 'poppins';
+            font-weight: 600;
+        }
+        .about .row .invol img{
+            width: 30px;
+            border-radius: 50%;
+        }
+
+        .menu{
+            min-height: 100vh;
+            width: 100%;
+            text-align: center;
+            padding: 5rem 5% 1.4rem;
+        }
+        .menu h1{
+            margin-bottom: 1rem;
+            font-family: 'poppins',sans-serif;
+            font-size: 4rem;
+            font-weight: 700;
+        }
+        .menu .cont{
+            width: 100%;
+            display: grid;
+            grid-template-columns: 20% 20% 20%;
+            grid-template-rows: 28% 28% 28%;
+            justify-content: center;
+            align-items: center;
+            row-gap: 10rem;
+            column-gap: 10px;
+            margin-top: 8rem;
+            width: 100%;
+        }
+        .menu .cont .box{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            border-radius: .5rem;
+            box-shadow: 1px 1px 10px #666;
+            position: relative;
+            border: solid 1px black;
+        }
+        .menu .cont .box img{
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            object-position: center;
+            background-color: rgba(222,222,222,1);
+            border-radius: .5rem;
+            border: solid .2px black;
+            filter: drop-shadow(1px 2px 10px #666);
+        }
+        .menu .cont .box .konten{
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .menu .cont .box .konten a{
+            padding: 2px;
+            background-color: gold;
+            border-radius: 5px 10px;
+            font-size: 10px;
+            color: #000;
+            font-family: 'poppins',sans-serif;
+        }
+
+        .contact{
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .contact h1{
+            font-weight: 600;
+            font-family: 'poppins',sans-serif;
+            margin-top: -10px;
+        }
+        .contact .kontainer-kontak{
+            display: flex;
+            width: 90%;
+            align-items: center;
+            justify-content: center;
+            background-color: #666;
+            padding: 1rem;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .contact .kontainer-kontak .map{
+            width: 50%;
+            height: 250px;
+            object-fit: contain;
+            flex: 1 1 10rem;
+        }
+        .contact .kontainer-kontak .data{
+            width: 50%;
+            padding: 3%;
+        }
+        .contact .kontainer-kontak .data .input{
+            background-color: #666;
+            width: 100%;
+            margin: 1rem 0;
+            color: #eee;
+            border: solid .5px #fff;
+            padding: 10px;
+        }
+        .contact .kontainer-kontak .data .input input{
+            background-color: #666;
+            outline: none;
+            border: none;
+            color: #eee;
+            width: 80%;
+        }
+        .contact .container-contact{
+            text-align: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 4rem 6% 1.4rem;
+            width: 100%;
+        }
+        .contact .container-contact h1{
+            margin-bottom: 2rem;
+        }
+        .contact .container-contact .isi{
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            padding: 1rem;
+            border-radius: 10px;
+            background-color: goldenrod;
+            height: 400px;
+            overflow-x: hidden;
+        }
+        .contact .container-contact .isi .map{
+            width: 100%;
+            height: 100%;
+            border: solid 1px #000;
+            box-shadow: 1px 1px 10px #000;
+            border-radius: 10px;
+
+        }
+        .contact .container-contact .isi .data{
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            gap: 10px;
+            width: 100%;
+        }
+        .contact .container-contact .isi .data .input{
+            display: flex;
+            gap: 10px;
+        }
+        .contact .container-contact .isi .data .input input{
+            width: 100%;
+            height: 3rem;
+            color: #000;
+        }
+        .contact .container-contact .isi .data .input textarea{
+            height: 110px;
+            width: 100%;
+        }
+        @media (max-width:450px){
+            *{
+                font-size: 55%;
+            }
+            .nav{
+                padding: 0 7%;
+            }
+            .nav .nav-logo img{
+                width: 25px;
+            }
+            .nav .nav-navbar{
+                transform: translateX(100%);
+                position: absolute;
+                right: 0;
+                top: 100%;
+                flex-direction: column;
+                background-color: rgba(1,1,1,.5);
+                backdrop-filter: blur(10px);
+                color: #fff;
+                width: 50%;
+                height: 100vh;
+                transition: all .3s linear;
+            }
+            .nav .nav-navbar.aktif{
+                transform: translateX(0);
+            }
+            .nav .nav-navbar a{
+                display: block;
+                margin: 3rem 0rem;
+                font-size: 1rem;
+            }
+            .nav .nav-extra #list{
+                display: block;
+            }
+            .home .row{
+                display: flex;
+                flex-wrap: wrap;
+                padding: 6rem 7% 1.4rem;
+            }
+            .home .row .left{
+                width: 100%;
+            }
+            .home .row .left p{
+                font-size: 8px;
+            }
+            .home .row .left .guest img{
+                width: 10px;
+            }
+            .home .row .right{
+                width: 100%;
+            }
+            .home .row .right .hp{
+                height: 22px;
+            }
+            .home .row .right .hp .i{
+                padding: 1px 3px;
+                border: solid 1px black;
+                font-size: .8rem;
+                border-radius: 50%;
+            }
+            .home .row .right .hp h5{
+                margin-top: 5px;
+            }
+            .note .row {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 2rem 0;
+            }
+            .note .row .about1{
+                width: 30rem;
+                height: 17rem;
+            }
+            .note .row .about1 .text h2{
+                font-size: 15px;
+            }
+            .note .row .about1 .text p{
+                font-size: 5px;
+            }
+            .note .row .about1 img{
+                width: 80%;
+                object-fit: contain;
+                object-position: center;
+            }
+            .about .row{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 20px 0;
+            }
+            .about .row .gambar .a{
+                width: 35rem;
+            }
+            .about .row .invol{
+                width: 10rem;
+                height: 8rem;
+            }
+            .about .row .invol img{
+                width: 20px;
+            }
+            .about .row .invol h4{
+                font-size: 8px;
+            }
+            .about .row .content h2{
+                font-size: 20px;  
+            }
+            .about .row .content p{
+                font-size: 7px;  
+            }
+            .menu .cont{
+                display: grid;
+                grid-template-columns: 30% 30%;
+                grid-template-rows: 30% 30%;
+                gap: 1.7rem 60px;
+                justify-items: center;
+            }
+            .menu .cont .box{
+                height: 20rem;
+                width: 15rem;
+            }
+            .menu .cont .box h3{
+                font-size: 10px;
+            }
+            .menu .cont .box span{
+                font-size: 10px;
+            }
+            .contact{
+                padding: 2rem 3% 1.4rem;
+            }
+            .contact .container-contact h1{
+                font-size: 20px;
+                font-weight: 700;
+            }
+            .contact .container-contact .isi{
+                display: flex;
+                flex-wrap: wrap;
+                font-size: 4rem;
+                align-items: center;
+                justify-items: center;
+                color: #000;
+            }
+            .contact .container-contact .isi .map{
+                height: 150px;
+            }
+            .contact .container-contact .isi button{
+                width: 50%;
+                height: 50%;
+                margin: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <header class="nav">
+        <div class="nav-logo"><img src="logo1.png" alt="R2"><h2>Warung<span>R2</span>.</h2></div>
+        <div class="nav-navbar">
+            <a href="#home" id="link">Home</a>
+            <a href="#about" id="link">About</a>
+            <a href="#menu" id="link">Menu</a>
+            <a href="#contact" id="link">Contact</a>
+        </div>
+        <div class="nav-extra">
+            <i class="fa fa-moon-o" id="mode" style="font-size: 2rem;"></i>
+            <i class="fa fa-cart-plus" id="cart" style="font-size: 2rem;"></i>
+            <i class="fa fa-navicon" id="list" style="font-size: 2rem;"></i>
+        </div>
+    </header>
+
+    <section class="home" id="home">
+        <div class="row">
+            <div class="left">
+                <div class="p1">Welcome To Warung R2</div>
+                <h1>Warung<span>R2</span> Where Taste Brings Precious Memories <span id="nama"></span></h1>
+                <p>Are You Someone Who enjoys beautiful food? if so welcome warungR2. where we serve up delectable dishes of you</p>
+                <button class="btn btn-warning">Buy Now</button>
+                <div class="guest">
+                    <img src="p1.jpeg" alt="pereting">
+                    <img src="p1.jpeg" alt="pereting">
+                    <img src="p1.jpeg" alt="pereting">
+                    <div class="com">
+                        <h7>Our Happy Guest</h7><br>
+                        <i class="fa fa-star"> 3.9</i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right">
+                <img src="primary.png" alt="Makanan">
+                <div class="hp">
+                    <div class="i"><i class="fa fa-phone"></i></div>
+                    <h5>123-061-090</h5>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="note">
+        <div class="row">
+            <div class="about1" data-aos="flip-left" data-aos-duration="4000" data-aos-easing="ease-in-sine" data-aos-offset="300">
+                <div class="text">
+                    <h2>Each bite is a journey of culinary discovery</h2>
+                    <p>Every bite is an expedition through a world of flavors, where the palete is the explorer and there are so much tasty food available</p>
+                    <button type="submit" class="btn btn-warning">Order Now</button>
+                </div>
+                <img src="makan.png" alt="Makanan" loading="lazy">
+            </div>
+            <div class="about1" data-aos="flip-left" data-aos-duration="4000" data-aos-easing="ease-in-sine" data-aos-offset="300" data-aos-delay="200">
+                <div class="text">
+                    <h2>Each bite is a journey of culinary discovery</h2>
+                    <p>Every Sip is an expedition through the world of flavors, where the palette is the explorer and there are so many
+                       delicious drinks available</p>
+                    <button type="submit" class="btn btn-warning">Order Now</button>
+                </div>
+                <img src="minum.png" alt="Minuman" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="row">
+            <div class="gambar" data-aos="zoom-in" data-aos-offset="250" data-aos-duration="1500">
+                <img src="ayam geprek.png" alt="" class="a" loading="lazy">
+                <div class="nama">
+                    <h6>ayam geprek</h6>
+                    <img src="ayam geprek.png" alt="" class="ya" loading="lazy">
+                </div>
+                <div class="invol">
+                    <img src="p1.jpeg" alt="">
+                    <img src="p1.jpeg" alt="">
+                    <img src="p1.jpeg" alt="">
+                    <h4>20K + People Involved</h4>
+                </div>
+            </div>
+            <div class="content" data-aos="fade-up"  data-aos-anchor-placement="center-bottom" data-aos-duration="1000" data-aos-delay="800">
+                <h2>Effortles Online Ordering Made And Very Simple</h2>
+                <p>Streamline your meal experience wout our easy to use online ordering system, ffrom browsing to checkout, we simplefield
+                every step ensuring free process. <br>Streamline your meal experience wout our easy to use online ordering system, ffrom browsing to checkout, we simplefield
+                every step ensuring free process.</p>
+                <button type="submit" class="btn btn-warning">Buy now</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="menu" id="menu">
+        <h1>Menu</h1>
+        <div class="cont">
+            <div class="box" data-aos="fade-up" data-aos-offset="300" data-aos-duration="2000">
+                <img src="makan.png" alt="" loading="lazy">
+                <h3>Daging Goreng</h3>
+                <div class="konten">
+                    <span>Rp.20.000</span>
+                    <a href="#">Add cart</a>
+                </div>
+            </div>
+            <div class="box" data-aos="fade-up" data-aos-delay="300" data-aos-offset="300" data-aos-duration="2000">
+                <img src="nasgor.png" alt="" loading="lazy">
+                <h3>Nasi goreng</h3>
+                <div class="konten">
+                    <span>Rp.12.000</span>
+                    <a href="#">Add cart</a>
+                </div>
+            </div>
+            <div class="box" data-aos="fade-up" data-aos-delay="600" data-aos-offset="300" data-aos-duration="2000">
+                <img src="ayam geprek.png" alt="" loading="lazy">
+                <h3>Ayam geprek</h3>
+                <div class="konten">
+                    <span>Rp.10.000</span>
+                    <a href="#">Add cart</a>
+                </div>
+            </div>
+            <div class="box" data-aos="fade-up"  data-aos-offset="300" data-aos-duration="2000">
+                <img src="misop.png" alt="" loading="lazy">
+                <h3>Mie soup</h3>
+                <div class="konten">
+                    <span>Rp.10.000</span>
+                    <a href="#">Add cart</a>
+                </div>
+            </div>
+            <div class="box" data-aos="fade-up" data-aos-delay="300" data-aos-offset="300" data-aos-duration="2000">
+                <img src="susu coklat.jpeg" alt="" loading="lazy">
+                <h3>Susu coklat</h3>
+                <div class="konten">
+                    <span>Rp.5.000</span>
+                    <a href="">Add cart</a>
+                </div>
+            </div>
+            <div class="box" data-aos="fade-up" data-aos-delay="600" data-aos-offset="300" data-aos-duration="2000">
+                <img src="jus mangga.jpeg" alt="" loading="lazy">
+                <h3>Juice Manggo</h3>
+                <div class="konten">
+                    <span>Rp.5.000</span>
+                    <a href="">Add cart</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="container-contact">
+            <h1>Contact Us</h1>
+            <div class="isi">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3981.779437138881!2d98.66388677367691!3d3.6377418499576435!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3031320c7aabe7d9%3A0x14e3c50d29bc5445!2sUniversitas%20Potensi%20Utama!5e0!3m2!1sid!2sid!4v1721114792986!5m2!1sid!2sid"
+                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade" class="map" data-aos="fade-right"></iframe>
+                <div class="data" data-aos="fade-left">
+                    <div class="input">
+                        <i class="fa fa-user-o"></i>
+                        <input type="text" placeholder="user">
+                    </div>
+                    <div class="input">
+                        <i class="fa fa-envelope-o"></i>
+                        <input type="text" inputmode="email" placeholder="email">
+                    </div>
+                    <div class="input">
+                        <i class="fa fa-file-word-o"></i>
+                        <textarea name="" id="" cols="30" rows="10" placeholder="pesan"></textarea>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-lg " data-toggle="modal" data-target="#myModal">Send</button>
+                    <div class="modal fade" id="myModal" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="Modal-title">PENGIRIMAN PESAN</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <h4>Kometar anda sudah dikirim</h4>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+    </footer>
+
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>AOS.init();</script>
+<script>
+    const list = document.querySelector('#list');
+    const navbar = document.querySelector('.nav-navbar');
+    list.addEventListener('click',()=>{
+        navbar.classList.toggle('aktif');
+    });
+    const mode = document.querySelector('#mode');
+    const body = document.querySelector('body');
+    mode.addEventListener('click',()=>{
+        body.classList.toggle('dark')
+    });
+    document.addEventListener('click',(e)=>{
+        if(!list.contains(e.target) && !navbar.contains(e.target)){
+            navbar.classList.remove('aktif')
+        }else{
+            navbar.classList.add('aktif')
+        }
+    });
+</script>
+<script src="index.js"></script>
+</body>
+</html>
