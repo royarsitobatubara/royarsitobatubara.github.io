@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <span id="make">make it roy</span>
+    <audio src="backsound.mp3" controls pause loop></audio>
+    <div class="info">
+        <div class="gif">
+            <img src="bear1.gif" alt="bear" id="img">
+        </div>
+        <div class="text">
+            <span id="text">masukin nama yahh</span>
+        </div>
+    </div>
+
+    <div class="login">
+        <div class="input">
+            <input type="text" id="nama" placeholder="nama">
+        </div>
+        <button id="login">klik sini</button>
+    </div>
+
+    <div class="loading">
+        <div class="titik"></div>
+        <div class="titik"></div>
+        <div class="titik"></div>
+    </div>
+
+    <div class="tanyaMarah">
+        <button onclick="iya()">Iya</button>
+        <button onclick="tidak()">Tidak</button>
+    </div>
+
+    <div class="meter">
+        <label for="meter" id="meterValue">0%</label>
+        <input type="range" min="0" max="100" value="0" step="0" id="meter">
+        <button onclick="next()">kirim</button>
+    </div>
+
+    <div class="hadiah">
+        <div class="kado" id="loveBtn">
+            <div class="tutup" id="tutup"></div>
+            <div class="tempat" id="tempat">LOVE</div>
+        </div>
+        <img src="bunga.png" alt="" id="bunga">
+        <span class="yeay">tab dimana saja untuk next</span>
+        <div class="terima" id="terima">
+            <button onclick="ambil('y')">Terima</button>
+            <button onclick="ambil('t')">Tolak</button>
+        </div>
+    </div>
+    <div class="kamuSyang">
+        <div class="cont">
+            <span id="tanyaSyg">Kamu Sayang Aku Ga</span>
+        </div>
+        <div class="cihuy">
+            <button onclick="yo(1)">iyalah</button>
+            <button onclick="yo(0)">kagalah</button>
+        </div>
+    </div>
+
+    <h1 class="yi">Ga bakal bisa diulang lagi😉</h1>
+    <script src="script.js"></script>
+</body>
+
+</html>
